@@ -133,7 +133,7 @@ export default class BlendMode
 const from2d = BlendMode.from2d;
 
 /**
- * Various blend modes supported by PIXI, in objects form
+ * Default blend modes supported by PIXI, in objects form. See {@link PIXI.BLEND_MODES}
  *
  * @memberOf PIXI.BlendMode
  * @static
