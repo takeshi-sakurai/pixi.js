@@ -14,7 +14,7 @@ export default class BlendMode
     /**
      * @param {number} [srcRGB] Multiplier for the RGB source blending factors
      * @param {number} [dstRGB] Multiplier for the RGB destination blending factors
-     * @param {number} [srcAlpha] Multiplier for RGB destination blending factors
+     * @param {number} [srcAlpha] Multiplier for the alpha source blending factors
      * @param {number} [dstAlpha] Multiplier for the alpha destination blending factor
      * @param {number} [modeRGB] How the RGB components of source and destination colors are combined
      * @param {number} [modeAlpha] How the alpha component of source and destination colors are combined
@@ -38,42 +38,42 @@ export default class BlendMode
         this.npm = [this, this];
 
         /**
-         * The height of the sprite (this is initially set by the texture)
+         * Multiplier for the RGB source blending factors
          *
          * @member {number}
          */
         this.srcRGB = srcRGB !== undefined ? srcRGB : gl.ONE;
 
         /**
-         * The height of the sprite (this is initially set by the texture)
+         * Multiplier for the RGB destination blending factors
          *
          * @member {number}
          */
         this.dstRGB = dstRGB !== undefined ? dstRGB : gl.ONE_MINUS_SRC_ALPHA;
 
         /**
-         * The height of the sprite (this is initially set by the texture)
+         * Multiplier for the alpha source blending factors
          *
          * @member {number}
          */
         this.srcAlpha = srcAlpha !== undefined ? srcAlpha : this.srcRGB;
 
         /**
-         * The height of the sprite (this is initially set by the texture)
+         * Multiplier for the alpha destination blending factor
          *
          * @member {number}
          */
         this.dstAlpha = dstAlpha !== undefined ? dstAlpha : this.dstRGB;
 
         /**
-         * The height of the sprite (this is initially set by the texture)
+         * How the RGB components of source and destination colors are combined
          *
          * @member {number}
          */
         this.modeRGB = modeRGB || gl.FUNC_ADD;
 
         /**
-         * The height of the sprite (this is initially set by the texture)
+         * How the alpha component of source and destination colors are combined
          *
          * @member {number}
          */
