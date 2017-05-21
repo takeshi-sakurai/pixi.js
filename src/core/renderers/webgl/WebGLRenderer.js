@@ -12,7 +12,7 @@ import mapWebGLDrawModesToPixi from './utils/mapWebGLDrawModesToPixi';
 import validateContext from './utils/validateContext';
 import { pluginTarget } from '../../utils';
 import glCore from 'pixi-gl-core';
-import { RENDERER_TYPE } from '../../const';
+import { RENDERER_TYPE, BLEND_MODES } from '../../const';
 
 let CONTEXT_UID = 0;
 
@@ -184,7 +184,7 @@ export default class WebGLRenderer extends SystemRenderer
 
         this._nextTextureLocation = 0;
 
-        this.setBlendMode(0);
+        this.setBlendMode(BLEND_MODES.NORMAL);
 
         /**
          * Fired after rendering finishes.
@@ -377,11 +377,27 @@ export default class WebGLRenderer extends SystemRenderer
     /**
      * Resizes the webGL view to the specified width and height.
      *
-     * @param {number} blendMode - the desired blend mode
+     * @param {PIXI.BlendMode} blendMode - the desired blend mode
      */
     setBlendMode(blendMode)
     {
         this.state.setBlendMode(blendMode);
+    }
+
+    /**
+     * binds texture and sets corresponding blendMode, takes into account premultiplied alpha
+     *
+     * @param {PIXI.BlendMode} blendMode - the desired blend mode
+     * @param {PIXI.Texture} texture - the new texture
+     * @param {number} [location] - the suggested texture location
+     * @param {boolean} [forceLocation] - force the location
+     */
+    setTextureBlend(blendMode, texture, location, forceLocation)
+    {
+        const baseTexture = texture.baseTexture || texture;
+
+        this.bindTexture(baseTexture, location, forceLocation);
+        this.state.setBlendMode(blendMode.npm[Number(baseTexture.premultipliedAlpha)]);
     }
 
     /**
