@@ -30,7 +30,7 @@ export default class WebGLState
          *
          * @member {BlendMode}
          */
-        this.activeBlendMode = BlendMode.values[0];
+        this.activeBlendMode = null;
 
         /**
          * The default state
@@ -272,6 +272,8 @@ export default class WebGLState
         }
 
         this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, false);
+
+        this.setBlendMode(BlendMode.values[0]);
 
         this.setState(this.defaultState);
     }

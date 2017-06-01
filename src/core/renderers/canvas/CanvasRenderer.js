@@ -191,7 +191,7 @@ export default class CanvasRenderer extends SystemRenderer
 
         context.setTransform(1, 0, 0, 1, 0, 0);
         context.globalAlpha = 1;
-        context.globalCompositeOperation = BLEND_MODES.NORMAL.compositionMode;
+        this.setBlendMode(BlendMode.values[0])
 
         if (navigator.isCocoonJS && this.view.screencanvas)
         {
