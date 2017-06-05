@@ -395,9 +395,11 @@ export default class WebGLRenderer extends SystemRenderer
     setTextureBlend(blendMode, texture, location, forceLocation)
     {
         const baseTexture = texture.baseTexture || texture;
+        const res = this.bindTexture(baseTexture, location, forceLocation);
 
-        this.bindTexture(baseTexture, location, forceLocation);
         this.state.setBlendMode(blendMode.npm[Number(baseTexture.premultipliedAlpha)]);
+        
+        return res;
     }
 
     /**
