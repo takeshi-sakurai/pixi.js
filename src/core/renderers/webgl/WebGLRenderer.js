@@ -391,6 +391,7 @@ export default class WebGLRenderer extends SystemRenderer
      * @param {PIXI.Texture} texture - the new texture
      * @param {number} [location] - the suggested texture location
      * @param {boolean} [forceLocation] - force the location
+     * @return {number} Returns location for bound texture
      */
     setTextureBlend(blendMode, texture, location, forceLocation)
     {
@@ -398,7 +399,7 @@ export default class WebGLRenderer extends SystemRenderer
         const res = this.bindTexture(baseTexture, location, forceLocation);
 
         this.state.setBlendMode(blendMode.npm[Number(baseTexture.premultipliedAlpha)]);
-        
+
         return res;
     }
 
@@ -540,7 +541,7 @@ export default class WebGLRenderer extends SystemRenderer
      * @param {PIXI.Texture} texture - the new texture
      * @param {number} location - the suggested texture location
      * @param {boolean} forceLocation - force the location
-     * @return {PIXI.WebGLRenderer} Returns itself.
+     * @return {number} Returns location for bound texture
      */
     bindTexture(texture, location, forceLocation)
     {
