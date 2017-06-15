@@ -1,0 +1,18 @@
+general:
+  build_dir: /
+
+dependencies:
+  post:
+#    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+#    - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    - sudo apt-get update
+#    - sudo apt-get install -y build-essential libxi-dev libglu1-mesa-dev libglew-dev xorg xvfb firefox dbus-x11 xfonts-100dpi xfonts-75dpi xfonts-cyrillic
+#    - sudo apt-get install google-chrome-stable
+#    - ./circle.sh
+
+test:
+  override:
+    - npm install xvfb-maybe
+    - export DISPLAY=':99.0'
+    - Xvfb :99 -screen 0 1024x768x24 -extension RANDR &
+    - ./node_modules/.bin/xvfb-maybe npm test
